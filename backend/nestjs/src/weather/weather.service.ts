@@ -2,7 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { catchError, firstValueFrom, map } from 'rxjs';
-import { WeatherData } from './weather.interface';
+import { ForecastData, WeatherData } from './weather.interface';
 
 @Injectable()
 export class WeatherService {
@@ -29,9 +29,11 @@ export class WeatherService {
     const baseUrl = this.configService.get<string>('weatherApi.baseUrl');
     const apiKey = this.configService.get<string>('weatherApi.key');
 
+    const separator = endpoint.includes('?') ? '&' : '?';
+
     return firstValueFrom(
       this.httpService
-        .get(`${baseUrl}${endpoint}?key=${apiKey}&q=${city}`)
+        .get(`${baseUrl}${endpoint}${separator}key=${apiKey}&q=${city}`)
         .pipe(
           map((response) => response.data),
           catchError((error) => {
@@ -62,6 +64,36 @@ export class WeatherService {
 
         this.cache.set(cacheKey, { data: weather, timestamp: Date.now() });
         return weather;
+      }),
+    );
+
+    return results;
+  }
+
+  async getForecastWeather(days: number = 5): Promise<ForecastData[][]> {
+    const results = await Promise.all(
+      this.cities.map(async (city) => {
+        const cacheKey = this.getCacheKey(city, `forecast-${days}`);
+
+        if (this.isCacheValid(cacheKey)) {
+          return this.cache.get(cacheKey).data;
+        }
+
+        const data = await this.fetchWeatherApi(
+          `/forecast.json?days=${days}`,
+          city,
+        );
+        const forecast = data.forecast.forecastday.map((day) => ({
+          city,
+          date: day.date,
+          temp_c: day.day.avgtemp_c,
+          condition: day.day.condition.text,
+          humidity: day.day.avghumidity,
+          wind_kph: day.day.maxwind_kph,
+        }));
+
+        this.cache.set(cacheKey, { data: forecast, timestamp: Date.now() });
+        return forecast;
       }),
     );
 
