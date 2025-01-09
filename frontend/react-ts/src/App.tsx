@@ -2,7 +2,7 @@ import nubisoftLogo from './assets/nubisoft.svg'
 
 function App() {
   return (
-    <div className="min-h-screen flex justify-center flex-col gap-4 items-center text-red-500">
+    <div className="min-h-screen w-full flex justify-center flex-col gap-4 items-center">
       <div>
         <a
           href="https://nubisoft.io/"
