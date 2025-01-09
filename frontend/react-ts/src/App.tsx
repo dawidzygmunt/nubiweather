@@ -1,11 +1,18 @@
-import nubisoftLogo from "./assets/nubisoft.svg";
+import nubisoftLogo from './assets/nubisoft.svg'
 
 function App() {
   return (
-    <div className="flex justify-center flex-col gap-4 items-center">
+    <div className="min-h-screen w-full flex justify-center flex-col gap-4 items-center">
       <div>
-        <a href="https://nubisoft.io/" target="_blank">
-          <img src={nubisoftLogo} className="" alt="Nubisoft logo" />
+        <a
+          href="https://nubisoft.io/"
+          target="_blank"
+        >
+          <img
+            src={nubisoftLogo}
+            className=""
+            alt="Nubisoft logo"
+          />
         </a>
       </div>
       <h1>NubiWeather</h1>
@@ -14,7 +21,7 @@ function App() {
         <h3>Good luck! :)</h3>
       </section>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
