@@ -10,4 +10,16 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    proxy: {
+      // Załóżmy, że Twój backend Nest działa na porcie 3000
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false,
+        // Opcjonalnie: jeśli chcesz usunąć '/api' z ścieżki
+        // rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    },
+  },
 })
