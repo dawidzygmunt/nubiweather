@@ -1,30 +1,38 @@
-import { Calendar, Cloud, LocateFixedIcon } from 'lucide-react'
-import { Card } from './components/ui/card'
-import { Separator } from './components/ui/separator'
+import { useGetWeather } from './hooks/useGetWeather'
+import WeatherTile from './components/weatherTile'
+import { useGetForecast } from './hooks/useGetForecast'
+import ForecastDisplay from './components/forecastDisplay'
+import Loader from './components/loader'
 
 function App() {
+  const { data: weather, isLoading: weatherIsLoading } = useGetWeather()
+  const { data: forecast, isLoading: forecastIsLoading } = useGetForecast()
+
+  if (weatherIsLoading || forecastIsLoading) {
+    return (
+      <div className="min-h-screen w-full flex items-center justify-center bg-[#0b0b0e]">
+        <Loader />
+      </div>
+    )
+  }
+
   return (
-    <div className="min-h-screen w-full flex p-10 bg-[#0b0b0e]">
-      <div>
-        <Card className="p-5 bg-[#242222] text-white border-0 ">
-          <span>Now</span>
-          <div className="flex items-center gap-10">
-            <span className="text-4xl">5oC </span>
-            <Cloud size={60} />
-          </div>
-          <p className="text-xs">Broken Clouds</p>
-          <Separator className="my-3" />
-          <div className="flex flex-col gap-1 text-sm">
-            <div className="flex items-center gap-2">
-              <Calendar size={15} />
-              Wed 12
-            </div>
-            <div className="flex items-center gap-2">
-              <LocateFixedIcon size={15} />
-              Gliwice, PL
-            </div>
-          </div>
-        </Card>
+    <div className="min-h-screen w-full flex flex-col gap-8 p-10 bg-[#0b0b0e]">
+      <div className="flex flex-col items-center sm:flex-row gap-10 ">
+        {weather?.map((data) => (
+          <WeatherTile
+            data={data}
+            key={`${data.city}-${data.wind_kph}`}
+          />
+        ))}
+      </div>
+      <div className="text-white flex-col xs:items-center sm:flex-row flex gap-10">
+        {forecast?.map((city) => (
+          <ForecastDisplay
+            data={city}
+            key={`${city[0].city}-${city[0].date}`}
+          />
+        ))}
       </div>
     </div>
   )
