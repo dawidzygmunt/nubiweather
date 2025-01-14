@@ -1,27 +1,97 @@
-# Frontend
-## React
-## Svelte
-## Vue
+# Weather Application
 
-In this directory you'll find frontend startes for different frontend frameworks. Each starter is preconfigured with Vite and TailwindCSS. Depending on your preference, you can choose between Angular, React, Svelte or Vue and JavaScript or TypeScript versions.
+## Overview
 
-## What we expect from you?
+A responsive web application built with React and TailwindCSS that displays current weather conditions and forecasts for Gliwice and Hamburg using the WeatherAPI.com service.
 
-Build simple web application that uses https://www.weatherapi.com/ to show current weather in 2 cities: Gliwice and Hamburg. The application can be built using any technology you like. 
-Functionality that we expect:
-1. Display current weather in Gliwice and Hamburg
-2. Display forecast for next days in Gliwice and Hamburg
+## Features
 
-Those are basic requirements, but feel free to add more features if you like, however don't spend too much time on it - max 8 hours.
+- Real-time weather data display for two cities:
+  - Gliwice, Poland
+  - Hamburg, Germany
+- Current weather information including:
+  - Temperature
+  - Weather conditions
+- Multi-day weather forecast
+- Responsive design optimized for both desktop and mobile devices
+- Clean and modern user interface
 
-## Guidelines for frontend:
+## Technologies Used
 
-1. Clean and readable code
-2. Responsive design
-3. Usage of modern frontend technologies
-4. Usage of best practices (don't get too fancy, we're looking for clean and readable code)
-5. Usage of version control system (git)
-6. Usage of provided API (we want to see how you use it)
-7. Instructions on how to run the application (we want to see your application in action)
-8. Readme with basic information about the application and features you've implemented
-+ 9. Bonus points for hosting the application on github pages or similar (we don't expect you to pay for hosting) [https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site]
+- React 18
+- Vite
+- TailwindCSS
+- WeatherAPI.com
+- Axios for API requests
+- React query
+- Date-fns for date formatting
+
+## Prerequisites
+
+Before running this application, make sure you have:
+
+- Node.js (version 16 or higher)
+- npm or yarn package manager
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/dawidzygmunt/nubiweather.git
+cd weather-app
+```
+
+2. Install dependencies:
+
+```bash
+pnpm install
+# or
+yarn install
+```
+
+## Running the Application
+
+To start the development server:
+
+```bash
+pnpm run dev
+```
+
+The application will be available at `http://localhost:5173`
+
+To build for production:
+
+```bash
+pnpm run build
+```
+
+## Project Structure
+
+```
+src/
+├── components/         # Reusable components
+├── assets/          # Static assets
+├── hooks/             # Custom React hooks
+├── utils/             # Helper functions
+├── lib/            # Configurations or abstractions
+├── types/            # TypeScript type definitions
+└── App.jsx           # Main application component
+```
+
+## API Integration
+
+The application communicates with a server built in NestJS, which acts as a middleware for handling API requests to WeatherAPI.com. The NestJS server receives requests from the application, processes them, and sends queries to WeatherAPI.com to fetch weather data. This approach ensures better security, scalability, and separation of concerns.
+
+The API integration is managed through a dedicated service module within the NestJS server, which handles all communication with WeatherAPI.com. Example endpoints used:
+
+- Current weather: `/current.json`
+- Forecast: `/forecast.json`
+
+## Future Improvements
+
+- Implement weather alerts
+- Add historical weather data
+- Include air quality information
+- Add unit conversion (Celsius/Fahrenheit)
+- Implement weather maps
