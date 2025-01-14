@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend/react-ts
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend/nestjs
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      # The key is exposed for the purposes of demonstrating the application
+      - WEATHER_API_KEY=a90cc88265134702933164351250901
