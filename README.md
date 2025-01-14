@@ -1,38 +1,47 @@
-Hello, fellow developer!
+# Weather Application
 
-If you are reading this, you're probably interested in joining Nubisoft and that's great! We are always looking for new members to join our team and help us develop and maintain our projects in e-health, e-commerce and more.
+A full-stack weather application featuring a **NestJS backend** and a **React frontend**. The backend handles communication with WeatherAPI.com, while the frontend provides a modern, responsive interface for displaying real-time weather data and forecasts for Gliwice and Hamburg.
 
-## What is Nubisoft?
-NubiSoft is a software development company that specializes in developing software solutions for the healthcare and e-commerce industries. We are a team of passionate developers who are dedicated to creating innovative and user-friendly software that helps our clients achieve their business goals.
+---
 
+## Table of Contents
 
-## What is this repository?
-This repository contains starter code for a simple web application that should use https://www.weatherapi.com/ to show current weather in 2 cities: Gliwice and Hamburg. The application can be built using any technology you like, but we've provided couple of starters in different technologies to help get you up and running.
+1. [Features](#features)
+2. [Backend](#backend)
+   - [Setup](#backend-setup)
+   - [Endpoints](#backend-endpoints)
+   - [Testing](#backend-testing)
+3. [Frontend](#frontend)
+   - [Setup](#frontend-setup)
+   - [Running the Application](#running-the-application)
+   - [Project Structure](#frontend-project-structure)
+4. [Technologies Used](#technologies-used)
+5. [Environment Variables](#environment-variables)
+6. [Future Improvements](#future-improvements)
 
-## How to apply?
+---
 
-1. Clone this repository
-2. Choose if you want to apply for a frontend, backend or fullstack position
-3. Choose a technology you want to use for frontend, backend or fullstack application (we suggest using provided examples, but you can use any technology you like and any starter code you like) 
-4. Implement the application
-5. Create a public repository and push your code there
-6. Wait for our feedback (we'll always give you feedback, no matter if you qualify for the next stage or not)
-7. Good luck!
+## Details
 
-## What we expect from you?
+For more detailed information, please refer to the [Frontend README](frontend/react-ts/README.md) and [Backend README](backend/README.md).
 
-### Frontend (JS/TS, Framework of your choice, CSS, HTML, Responsive design, API usage)
-Build simple web application that uses https://www.weatherapi.com/ to show current weather in 2 cities: Gliwice and Hamburg. The application can be built using any technology you like.
+### Backend
 
-Detailed requirements for frontend can be found in the README.md file in frontend directory.
+- Provides weather data for Gliwice and Hamburg.
+- Current weather and multi-day weather forecast endpoints.
+- In-memory caching (3 minutes) to reduce API calls.
+- Robust error handling.
+- Unit-tested codebase.
+- Configurable environment settings.
 
-### Backend (Backend framework, usage of SQL/No-SQL database, API usage, Docker, Best practices, Clean code, Version control system, Testing)
-Build simple API that uses https://www.weatherapi.com/ to show current weather in 2 cities: Gliwice and Hamburg. The application can be built using any technology you like.
+### Frontend
 
-Detailed requirements for backend can be found in the README.md file in backend directory.
+- Real-time weather data display for two cities: Gliwice (Poland) and Hamburg (Germany).
+- Current weather conditions include temperature and weather details.
+- Multi-day weather forecast.
+- Responsive design optimized for desktop and mobile.
+- Modern UI with a clean design.
 
-### Fullstack
-1. Implement both frontend and backend requirements
-2. Integration of frontend and backend projects
-3. Instructions on how to run the application
-4. Readme with basic information about the application and features you've implemented and how the frontend and backend communicate
+---
+
+## Backend
