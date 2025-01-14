@@ -4,6 +4,7 @@ export interface WeatherData {
   condition: string;
   humidity: number;
   wind_kph: number;
+  icon: string;
 }
 
 export interface ForecastData extends WeatherData {

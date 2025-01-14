@@ -60,6 +60,7 @@ export class WeatherService {
           condition: data.current.condition.text,
           humidity: data.current.humidity,
           wind_kph: data.current.wind_kph,
+          icon: data.current.condition.icon,
         };
 
         this.cache.set(cacheKey, { data: weather, timestamp: Date.now() });
@@ -90,6 +91,7 @@ export class WeatherService {
           condition: day.day.condition.text,
           humidity: day.day.avghumidity,
           wind_kph: day.day.maxwind_kph,
+          icon: day.day.condition.icon,
         }));
 
         this.cache.set(cacheKey, { data: forecast, timestamp: Date.now() });
