@@ -39,15 +39,13 @@ Before running this application, make sure you have:
 
 ```bash
 git clone https://github.com/dawidzygmunt/nubiweather.git
-cd weather-app
+cd nubiweather
 ```
 
 2. Install dependencies:
 
 ```bash
 pnpm install
-# or
-yarn install
 ```
 
 ## Running the Application
